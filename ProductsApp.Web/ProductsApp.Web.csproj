@@ -221,6 +221,10 @@
       <Project>{715a1254-63ed-49e0-b8fb-448c7400769d}</Project>
       <Name>ProductsApp.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProductsApp.Service\ProductsApp.Service.csproj">
+      <Project>{e7d61317-a4fa-4301-bff9-8d9eafee028a}</Project>
+      <Name>ProductsApp.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

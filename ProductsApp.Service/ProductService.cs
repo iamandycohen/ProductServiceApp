@@ -1,11 +1,12 @@
 ﻿using ProductsApp.Data;
+using ProductsApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductsApp.Models
+namespace ProductsApp.Service
 {
     public class ProductService : IProductService
     {

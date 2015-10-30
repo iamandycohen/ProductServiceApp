@@ -3,8 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
 using System.Collections.Generic;
+using ProductsApp.Models;
 
-namespace ProductsApp.Models.Tests
+namespace ProductsApp.Service.Tests
 {
     [TestClass]
     public class ProductServiceTests
