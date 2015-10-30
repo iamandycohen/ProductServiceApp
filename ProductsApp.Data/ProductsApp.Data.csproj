@@ -51,6 +51,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductDbContext.cs" />
+    <Compile Include="ProductDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

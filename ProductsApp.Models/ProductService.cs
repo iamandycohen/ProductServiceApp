@@ -21,7 +21,7 @@ namespace ProductsApp.Models
         {
             return ProductDbContext.Products.Select(p => new ProductDto
             {
-                Id = p.Id,
+                ProductId = p.ProductId,
                 Name = p.Name,
                 Sku = p.Sku,
                 Price = p.Price,
@@ -30,18 +30,21 @@ namespace ProductsApp.Models
             });
         }
 
-        public IProductDto GetProduct(int id)
+        public IProductDto GetProduct(int productId)
         {
-            return GetProducts()
-                .FirstOrDefault(p => p.Id == id);
+            var products = GetProducts();
+            var product = products.FirstOrDefault(p => p.ProductId == productId);
+            return product;
         }
 
 
         public bool AddProduct(IProductDto product)
         {
 
+            var productId = GetProducts().Select(e => e.ProductId).Max() + 1;
             var  newProduct = new Product
             {
+                ProductId = productId,
                 LastUpdated = DateTime.UtcNow,
                 Name = product.Name,
                 Price = product.Price,

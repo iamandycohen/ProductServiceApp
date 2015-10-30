@@ -10,6 +10,7 @@ namespace ProductsApp.Data
     public class Product
     {
         public int Id { get; set; }
+        public int ProductId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

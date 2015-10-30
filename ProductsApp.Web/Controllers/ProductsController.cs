@@ -23,9 +23,10 @@ namespace ProductsApp.Web.Controllers
         }
 
         // GET: api/Products
-        public IQueryable<IProductDto> Get()
+        public IList<IProductDto> Get()
         {
-            return ProductService.GetProducts();
+            var products = ProductService.GetProducts().ToList();
+            return products;
         }
 
         // GET: api/Products/5

@@ -15,12 +15,13 @@ namespace ProductsApp.Models.Tests
         [TestInitialize]
         public void Init()
         {
+
             var productService = new Moq.Mock<IProductService>();
             var data = new List<IProductDto>
             {
-                new ProductDto { Id = 5555, Name = "Stroller", Category = "Baby", LastUpdated = DateTime.UtcNow, Price = 199.99, Sku = "AEX143" },
-                new ProductDto { Id = 5543, Name = "Optimus Prime", Category = "Toys", LastUpdated = DateTime.UtcNow, Price = 13.37, Sku = "IOL123" },
-                new ProductDto { Id = 7563, Name = "Sega Genesis", Category = "Toys", LastUpdated = DateTime.UtcNow, Price = 149.99, Sku = "XYZ904" }
+                new ProductDto { ProductId = 5555, Name = "Stroller", Category = "Baby", LastUpdated = new DateTime(2014, 5, 23), Price = 199.99, Sku = "AEX143" },
+                new ProductDto { ProductId = 5543, Name = "Optimus Prime", Category = "Toys", LastUpdated = new DateTime(2014, 2, 1), Price = 13.37, Sku = "IOL123" },
+                new ProductDto { ProductId = 7563, Name = "Sega Genesis", Category = "Toys", LastUpdated = DateTime.UtcNow, Price = 149.99, Sku = "XYZ904" }
             };
 
             productService.Setup(m => m.GetProducts()).Returns(data.AsQueryable());
@@ -28,7 +29,7 @@ namespace ProductsApp.Models.Tests
             productService.Setup(m => m.AddProduct(It.IsAny<IProductDto>())).Returns(
                 (IProductDto product) =>
                 {
-                    product.Id = data.Last().Id + 1;
+                    product.ProductId = data.Select(e => e.ProductId).Max() + 1;
                     product.LastUpdated = DateTime.UtcNow;
                     data.Add(product);
 
@@ -50,7 +51,7 @@ namespace ProductsApp.Models.Tests
             // assert
             Assert.IsNotNull(products);
             Assert.IsInstanceOfType(products, typeof(IQueryable<IProductDto>));
-            Assert.IsTrue(products.First().Id == 5555);
+            Assert.IsTrue(products.First().ProductId == 5555);
 
         }
 
@@ -66,7 +67,7 @@ namespace ProductsApp.Models.Tests
             // assert
             Assert.IsNotNull(product);
             Assert.IsInstanceOfType(product, typeof(IProductDto));
-            Assert.IsTrue(product.Id == 5555);
+            Assert.IsTrue(product.ProductId == 5555);
         }
 
         [TestMethod]
@@ -87,7 +88,7 @@ namespace ProductsApp.Models.Tests
             // assert
             Assert.IsTrue(success);
             Assert.IsInstanceOfType(success, typeof(bool));
-            Assert.AreEqual(newProduct.Id, 7564);
+            Assert.AreEqual(newProduct.ProductId, 7564);
             Assert.AreEqual(newProduct.Sku, "QWERTY");
             Assert.AreEqual(newProduct.Name, "Teddy Ruxpin");
         }

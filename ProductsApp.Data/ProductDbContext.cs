@@ -11,9 +11,9 @@ namespace ProductsApp.Data
     public class ProductDbContext : DbContext
     {
 
-        public ProductDbContext() : base("name=ProductDbContext")
+        public ProductDbContext() : base("ProductDbContext")
         {
-            this.Database.Log = s => Debug.WriteLine(s);
+            Database.SetInitializer<ProductDbContext>(new ProductDbInitializer());
         }
 
         public DbSet<Product> Products { get; set; }
